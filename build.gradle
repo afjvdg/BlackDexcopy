@@ -4,19 +4,21 @@ buildscript {
         kotlin_version = '1.5.0'
     }
     repositories {
-        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
-        maven { url 'https://maven.aliyun.com/repository/google' }
-        maven { url 'https://maven.aliyun.com/repository/central' }
-        jcenter { url 'https://maven.aliyun.com/repository/jcenter' }
-        jcenter { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
-        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
-        maven { url 'https://repo1.maven.org/maven2/' }
+        // 官方源（优先）
+        google()
+        mavenCentral()
+        // 备用国内镜像（加速）
+        maven { url 'https://repo.huaweicloud.com/repository/maven/' }
+        maven { url 'https://mirrors.tuna.tsinghua.edu.cn/maven/' }
+        // jcenter 已弃用，但为兼容旧项目保留官方地址
+        jcenter()
+        // 其他常用仓库
         maven { url 'https://jitpack.io' }
+        maven { url 'https://repo1.maven.org/maven2/' }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.2.0"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -24,14 +26,16 @@ buildscript {
 
 allprojects {
     repositories {
-        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
-        maven { url 'https://maven.aliyun.com/repository/google' }
-        maven { url 'https://maven.aliyun.com/repository/central' }
-        jcenter { url 'https://maven.aliyun.com/repository/jcenter' }
-        jcenter { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
-        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
-        maven { url 'https://repo1.maven.org/maven2/' }
+        // 官方源（优先）
+        google()
+        mavenCentral()
+        // 备用国内镜像（加速）
+        maven { url 'https://repo.huaweicloud.com/repository/maven/' }
+        maven { url 'https://mirrors.tuna.tsinghua.edu.cn/maven/' }
+        // jcenter 备用
+        jcenter()
         maven { url 'https://jitpack.io' }
+        maven { url 'https://repo1.maven.org/maven2/' }
     }
 }
 
