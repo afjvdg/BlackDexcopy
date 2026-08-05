@@ -1,21 +1,21 @@
 name: Android APK Build
 on:
-  workflow_dispatch:  # 启用手动触发按钮
+  workflow_dispatch:
   push:
-    branches: [ main, master ] # 推送代码时自动触发
+    branches: [ main, master ]
 
 jobs:
   build:
-    runs-on: ubuntu-latest # 使用Ubuntu环境
+    runs-on: ubuntu-latest
     steps:
       - name: 拉取代码
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4  # 保持v4，因为v5尚未发布
 
       - name: 设置JDK 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v4  # ⚠️ 注意：这里保持v4，但改用更稳定的分发版
         with:
           java-version: '17'
-          distribution: 'temurin'
+          distribution: 'temurin'   # 推荐用temurin，比默认更稳定
           cache: gradle
 
       - name: 设置Gradle权限
@@ -28,4 +28,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: app-debug
-          path: app/build/outputs/apk/debug/*.apk # APK生成路径[reference:4]
+          path: app/build/outputs/apk/debug/*.apk
